@@ -1,0 +1,70 @@
+// app.js
+
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
+const resultsList = document.getElementById('results-list');
+
+searchButton.addEventListener('click', search);
+
+function search() {
+  const query = searchInput.value.trim();
+  
+  if (query !== '') {
+    performSearch(query);
+  }
+  
+  searchInput.value = '';
+}
+
+function performSearch(query) {
+  // Aqui você deve usar a API de música ou vídeo para realizar a pesquisa e obter os resultados
+  
+  // Exemplo de resultados simulados
+  const results = [
+    {
+      title: 'Vídeo 1',
+      thumbnail: 'https://example.com/thumbnail1.jpg',
+      link: 'https://example.com/video1'
+    },
+    {
+      title: 'Vídeo 2',
+      thumbnail: 'https://example.com/thumbnail2.jpg',
+      link: 'https://example.com/video2'
+    },
+    {
+      title: 'Vídeo 3',
+      thumbnail: 'https://example.com/thumbnail3.jpg',
+      link: 'https://example.com/video3'
+    }
+  ];
+
+  displayResults(results);
+}
+
+function displayResults(results) {
+  resultsList.innerHTML = '';
+
+  results.forEach(result => {
+    const li = document.createElement('li');
+    li.classList.add('result-item');
+
+    const title = document.createElement('p');
+    title.classList.add('result-title');
+    title.textContent = result.title;
+
+    const thumbnail = document.createElement('img');
+    thumbnail.classList.add('result-thumbnail');
+    thumbnail.src = result.thumbnail;
+    thumbnail.alt = result.title;
+
+    const link = document.createElement('a');
+    link.href = result.link;
+    link.textContent = 'Assistir';
+
+    li.appendChild(title);
+    li.appendChild(thumbnail);
+    li.appendChild(link);
+
+    resultsList.appendChild(li);
+  });
+}
